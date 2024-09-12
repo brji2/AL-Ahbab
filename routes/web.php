@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Baraa Jilo
 Route::get('/', function () {
     return view('welcome');
 });

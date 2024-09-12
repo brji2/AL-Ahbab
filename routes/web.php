@@ -12,8 +12,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+<<<<<<< HEAD
 
 //Baraa Jilo
+=======
+//ahmad rahhal
+>>>>>>> 72844c83d3440f081ca5b6a662bb75b584d64062
 Route::get('/', function () {
     return view('welcome');
 });

@@ -11,17 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('group_has_material', function (Blueprint $table) {
+        Schema::create('group_material', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('group_id');
+            $table->unsignedBigInteger('group_id');
             $table->foreign('group_id')->references('id')->on('groups');
-            $table->bigInteger('material_id');
+            $table->unsignedBigInteger('material_id');
             $table->foreign('material_id')->references('id')->on('materials');
+            $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('group_has_material');
+        Schema::dropIfExists('group_material');
     }
 };

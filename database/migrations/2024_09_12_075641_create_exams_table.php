@@ -11,24 +11,21 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('tester_id');
+            $table->unsignedBigInteger('tester_id');
             $table->foreign('tester_id')->references('id')->on('users');
-            $table->bigInteger('student_id');
+            $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('users');
             $table->bigInteger('score');
             $table->enum('result', [""]);
             $table->date('date');
-            $table->bigInteger('material_id');
+            $table->unsignedBigInteger('material_id');
             $table->foreign('material_id')->references('id')->on('materials');
             $table->tinyInteger('juz');
             $table->text('certificate')->nullable();
+            $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

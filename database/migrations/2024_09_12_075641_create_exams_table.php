@@ -13,11 +13,13 @@ return new class extends Migration
     {
         Schema::create('exams', function (Blueprint $table) {
             $table->id();
+
             $table->unsignedBigInteger('tester_id');
             $table->foreign('tester_id')->references('id')->on('users');
+
             $table->unsignedBigInteger('student_id');
             $table->foreign('student_id')->references('id')->on('users');
-            $table->bigInteger('score');
+            $table->unsignedTinyInteger('score');
             $table->enum('result', [""]);
             $table->date('date');
             $table->unsignedBigInteger('material_id');

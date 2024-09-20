@@ -1,2 +1,1 @@
-<img src="https://github.com/user-attachments/assets/ac2a7804-c459-4d40-a6f3-acc8deffc706
-" alt="Schema">
+![Schema Diagram](https://github.com/user-attachments/assets/064f9b73-c661-45ed-b6fd-b25dc587036f)

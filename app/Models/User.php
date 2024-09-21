@@ -41,4 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function person()
+    {
+        return $this->hasOne(Person::class);
+    }
+
+    public function getAvatar()
+    {
+        try {
+            return $this->person()->getAvatar();
+        } catch (\Throwable $th) {
+            return "images/avatar.png";
+        }
+    }
 }

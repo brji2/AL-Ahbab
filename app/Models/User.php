@@ -41,28 +41,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-
-
-    public function examsAsTester(){
-        return $this->hasMany(Exam::class,'tester_id','id');
+    public function person()
+    {
+        return $this->hasOne(Person::class);
     }
 
-    public function examsAsStudent(){
-        return $this->hasMany(Exam::class,'student_id','id');
+    public function getAvatar()
+    {
+        try {
+            return $this->person()->getAvatar();
+        } catch (\Throwable $th) {
+            return "images/avatar.png";
+        }
     }
-
-    public function regionAsManager(){
-        return $this->belongsTo(Region::class,'manager_id','id');
-    }
-
-    public function instituteAsManager(){
-        return $this->hasOne(Institute::class,'manager_id','id');
-    }
-
-    public function gruopAsTeacher(){
-        return $this->hasOne(Group::class,'teacher_id','id');
-    }
-
-    
 }

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('location_id')->references('id')->on('locations');
 
             $table->unsignedBigInteger('manager_id');
-            $table->foreign('manager_id')->references('id')->on('users');
+            $table->foreign('manager_id')->references('id')->on('managers');
 
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');

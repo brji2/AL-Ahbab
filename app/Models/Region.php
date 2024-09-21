@@ -9,7 +9,8 @@ class Region extends Model
 {
     use HasFactory;
 
-    public function manager(){
-        return $this->hasOne(User::class,'manager_id','id');
+    public function manager()
+    {
+        return $this->hasOne(Manager::class);
     }
 }

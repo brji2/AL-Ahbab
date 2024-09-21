@@ -8,17 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Exam extends Model
 {
     use HasFactory;
-    public function tester(){
-        return $this->belongsTo(User::class,'tester_id','id');
+    public function tester()
+    {
+        return $this->belongsTo(Tester::class);
     }
 
-    public function student(){
-        return $this->belongsTo(User::class,'student_id','id');
+    public function student()
+    {
+        return $this->belongsTo(Student::class);
     }
 
-    public function material(){
-        return $this->belongsTo(Material::class);
+    public function subject()
+    {
+        return $this->belongsTo(Subject::class);
     }
-
-    
 }

@@ -1,205 +1,183 @@
-<x-app-layout>
+<x-crud-layout title="إضافة مختبر جديد" backUrl="testers.index">
 
-    <div class="">
+    <form action="{{ route('testers.store') }}" method="POST" class=" grid grid-cols-4 gap-3 max-w-xl space-y-6"
+        enctype="multipart/form-data">
+        @csrf
 
-        <div class="flex items-center justify-between mb-6">
-            <div>
-                <h2 class="text-gray-700 uppercase font-bold">Edit Tester</h2>
-            </div>
-            <div class="flex flex-wrap items-center">
-                <a href="{{ route('testers.index') }}"
-                    class="bg-gray-200 text-gray-700 text-sm uppercase py-2 px-4 flex items-center rounded">
-                    <svg class="w-3 h-3 fill-current" aria-hidden="true" focusable="false" data-prefix="fas"
-                        data-icon="long-arrow-alt-left" class="svg-inline--fa fa-long-arrow-alt-left fa-w-14"
-                        role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                        <path fill="currentColor"
-                            d="M134.059 296H436c6.627 0 12-5.373 12-12v-56c0-6.627-5.373-12-12-12H134.059v-46.059c0-21.382-25.851-32.09-40.971-16.971L7.029 239.029c-9.373 9.373-9.373 24.569 0 33.941l86.059 86.059c15.119 15.119 40.971 4.411 40.971-16.971V296z">
-                        </path>
-                    </svg>
-                    <span class="ml-2 text-xs font-semibold">Back</span>
-                </a>
-            </div>
+        <!-- Name -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="name" :value="'الاسم'" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')"
+                required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
-
-        <div class="table w-full mt-8 bg-white rounded">
-            <form action="{{ route('testers.store') }}" method="POST" class="w-full max-w-xl px-6 py-12 space-y-6"
-                enctype="multipart/form-data">
-                @csrf
-
-                <!-- Name -->
-                <div>
-                    <x-input-label for="name" :value="__('Name')" />
-                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
-                        :value="old('name')" required autofocus autocomplete="name" />
-                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
-                </div>
-                <!-- Name -->
+        <!-- Name -->
 
 
-                <!-- Username -->
-                <div>
-                    <x-input-label for="username" :value="__('UserName')" />
-                    <x-text-input id="username" name="username" type="text" class="mt-1 block w-full"
-                        :value="old('username')" required autocomplete="username" />
-                    <x-input-error class="mt-2" :messages="$errors->get('username')" />
-                </div>
-                <!--/ Username -->
+        <!-- Username -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="username" :value="'اسم المستخدم'" />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username')"
+                required autocomplete="username" />
+            <x-input-error class="mt-2" :messages="$errors->get('username')" />
+        </div>
+        <!--/ Username -->
 
 
-                <!-- Email -->
-                <div>
-                    <x-input-label for="email" :value="__('Email')" />
-                    <x-text-input id="email" name="email" type="text" class="mt-1 block w-full"
-                        :value="old('email')" required autocomplete="email" />
-                    <x-input-error class="mt-2" :messages="$errors->get('email')" />
-                </div>
-                <!--/ Email -->
-
-                <!-- Password -->
-                <div>
-                    <x-input-label for="update_password_password" :value="__('New Password')" />
-                    <x-text-input id="update_password_password" name="password" type="password"
-                        class="mt-1 block w-full" autocomplete="new-password" />
-                    <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
-                </div>
-                <!--/ Password -->
-
-                <!-- Password Confirmation -->
-                <div>
-                    <x-input-label for="update_password_password_confirmation" :value="__('Confirm Password')" />
-                    <x-text-input id="update_password_password_confirmation" name="password_confirmation"
-                        type="password" class="mt-1 block w-full" autocomplete="new-password" />
-                    <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
-                </div>
-                <!--/ Password Confirmation -->
+        <!-- Email -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="email" :value="'البريد الإلكتروني'" />
+            <x-text-input id="email" name="email" type="text" class="mt-1 block w-full" :value="old('email')"
+                required autocomplete="email" />
+            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+        </div>
+        <!--/ Email -->
 
 
 
-                <!-- Phone -->
-                <div>
-                    <x-input-label for="phone" :value="__('Phone')" />
-                    <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full"
-                        :value="old('phone')" required autocomplete="phone" />
-                    <x-input-error class="mt-2" :messages="$errors->get('phone')" />
-                </div>
-                <!--/ Phone -->
-
-                <!-- Birth Date -->
-                <div>
-                    <x-input-label for="datepicker-sc" :value="__('Birth_day')" />
-                    <x-text-input id="datepicker-sc" name="birth_day" type="date" class="mt-1 block w-full"
-                        :value="old('birth_day')" required autocomplete="birth_day" />
-                    <x-input-error class="mt-2" :messages="$errors->get('birth_day')" />
-                </div>
-                <!--/ birth_day -->
+        <!-- Phone -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="phone" :value="'رقم الهاتف'" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone')"
+                required autocomplete="phone" />
+            <x-input-error class="mt-2" :messages="$errors->get('phone')" />
+        </div>
+        <!--/ Phone -->
 
 
-                <!-- Address -->
-                <div>
-                    <x-input-label for="address" :value="__('Address')" />
-                    <x-text-input id="address" name="address" type="text" class="mt-1 block w-full"
-                        :value="old('address')" required autocomplete="address" />
-                    <x-input-error class="mt-2" :messages="$errors->get('address')" />
-                </div>
-                <!--/ Address -->
+        <!-- Password -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="update_password_password" :value="'كلمة المرور'" />
+            <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full"
+                autocomplete="new-password" />
+            <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
+        </div>
+        <!--/ Password -->
 
-                <!-- Gender -->
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
-                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            Sex
-                        </label>
-                    </div>
-                    <div class="md:w-2/3">
-                        <div class="flex flex-row items-center">
-                            <label class="block text-gray-500 font-bold">
-                                <input name="sex" class="mr-2 leading-tight" type="radio" value="male">
-                                <span class="text-sm">Male</span>
-                            </label>
-                            <label class="ml-4 block text-gray-500 font-bold">
-                                <input name="sex" class="mr-2 leading-tight" type="radio" value="female">
-                                <span class="text-sm">Female</span>
-                            </label>
-                        </div>
-                        @error('sex')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
-
-
-
-                <!-- Is Married -->
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
-                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            Marital Status
-                        </label>
-                    </div>
-                    <div class="md:w-2/3">
-                        <div class="flex flex-row items-center">
-                            <label class="block text-gray-500 font-bold">
-                                <input name="IsMarried" class="mr-2 leading-tight" type="radio" value="1">
-                                <span class="text-sm">Married</span>
-                            </label>
-                            <label class="ml-4 block text-gray-500 font-bold">
-                                <input name="IsMarried" class="mr-2 leading-tight" type="radio" value="0">
-                                <span class="text-sm">Single</span>
-                            </label>
-                        </div>
-                        @error('IsMarries')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
+        <!-- Password Confirmation -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="update_password_password_confirmation" :value="'تأكيد كلمة المرور'" />
+            <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password"
+                class="mt-1 block w-full" autocomplete="new-password" />
+            <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
+        </div>
+        <!--/ Password Confirmation -->
 
 
 
 
+        <!-- Birth Date -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="datepicker-sc" :value="__('تاريخ الميلاد')" />
+            <x-text-input id="datepicker-sc" name="birth_day" type="date" class="mt-1 block w-full"
+                :value="old('birth_day')" required autocomplete="birth_day" />
+            <x-input-error class="mt-2" :messages="$errors->get('birth_day')" />
+        </div>
+        <!--/ birth_day -->
 
-                <!-- Institute -->
-                <div class="md:flex md:items-center mb-6">
-                    <div class="md:w-1/3">
-                        <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
-                            Institute
-                        </label>
-                    </div>
-                    <div class="md:w-2/3">
-                        <select name="institute_id"
-                            class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-blue-500">
-                            @foreach ($institutes as $institute)
-                                <option value="{{ $institute->id }}">{{ $institute->name }}</option>
-                            @endforeach
-                        </select>
-                        @error('institute_id')
-                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
 
-                <div class="md:flex md:items-center">
-                    <div class="md:w-1/3"></div>
-                    <div class="md:w-2/3">
-                        <button
-                            class="shadow bg-blue-500 hover:bg-blue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                            type="submit">
-                            Create Tester
-                        </button>
-                    </div>
-                </div>
-            </form>
+        <!-- Address -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="address" :value="__('العنوان')" />
+            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="old('address')"
+                required autocomplete="address" />
+            <x-input-error class="mt-2" :messages="$errors->get('address')" />
+        </div>
+        <!--/ Address -->
+
+
+        <div class=" col-span-4 md:col-span-2">
+            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">اختر
+                المعهد</label>
+            <select id="countries" name="institute_id"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>اختر المعهد</option>
+                @foreach ($institutes as $institute)
+                    <option value="{{ $institute->id }}">{{ $institute->name }}</option>
+                @endforeach
+            </select>
+            @error('institute_id')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
         </div>
 
 
 
-        @push('scripts')
-            <script>
-                $(function() {
-                    $("#datepicker-sc").datepicker({
-                        dateFormat: 'yy-mm-dd'
-                    });
-                })
-            </script>
-        @endpush
-    </div>
-</x-app-layout>
+
+
+
+        <!-- profile_picture -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="profile_picture" :value="__('صورة الحساب')" />
+            <x-text-input id="profile_picture" name="profile_picture" type="file" class="mt-1 block w-full"
+                :value="old('profile_picture')" required autocomplete="profile_picture" />
+            <x-input-error class="mt-2" :messages="$errors->get('profile_picture')" />
+        </div>
+        <!--/ profile_picture -->
+
+
+
+        <!-- Gender -->
+        <div class="md:flex md:items-center justify-center mb-6 col-span-2">
+            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                الجنس
+            </label>
+            <div class="">
+                <div class="flex flex-row justify-center text-center items-center">
+                    <label class="block text-gray-500 font-bold">
+                        <input name="sex" class="mr-2 leading-tight" type="radio" value="male">
+                        <span class="text-sm">ذكر</span>
+                    </label>
+                    <label class="ml-4 block text-gray-500 font-bold">
+                        <input name="sex" class="mr-2 leading-tight" type="radio" value="female">
+                        <span class="text-sm">أنثى</span>
+                    </label>
+                </div>
+                @error('sex')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+            </div>
+        </div>
+
+
+
+        <!-- Is Married -->
+        <div class="md:flex md:items-center col-span-2 mb-6">
+
+            <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
+                الوضع الاجتماعي
+            </label>
+            <div class="">
+                <div class="  flex flex-row items-center">
+                    <label class="block text-gray-500 font-bold">
+                        <input name="IsMarried" class="mr-2 leading-tight" type="radio" value="1">
+                        <span class="text-sm">متزوج</span>
+                    </label>
+                    <label class="ml-4 block text-gray-500 font-bold">
+                        <input name="IsMarried" class="mr-2 leading-tight" type="radio" value="0">
+                        <span class="text-sm">أعزب</span>
+                    </label>
+                </div>
+                @error('IsMarried')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+
+            </div>
+
+        </div>
+
+        <x-primary-button class=" col-span-2 md:col-span-1">أضف مختبر جديد</x-primary-button>
+    </form>
+
+
+    @push('scripts')
+        <script>
+            $(function() {
+                $("#datepicker-sc").datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+            })
+        </script>
+    @endpush
+
+</x-crud-layout>

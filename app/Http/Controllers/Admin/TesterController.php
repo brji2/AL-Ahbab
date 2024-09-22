@@ -121,7 +121,7 @@ class TesterController extends Controller
         ]);
 
         if ($request->hasFile('profile_picture')) {
-            $profile = 'avatar' . '-' .  $tester->person->id . time() . '-' .  $request->profile_picture->extension();
+            $profile = 'avatar' . '-' .  $tester->person->id . '-' . time() . '.' .  $request->profile_picture->extension();
             $request->profile_picture->move(public_path('images/profile'), $profile);
         } else {
             $profile = $tester->person->profile_picture;

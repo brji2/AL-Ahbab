@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
 });
 
 
-Route::prefix('testers')->group(function () {
+Route::prefix('testers')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [TesterController::class, 'index'])->name('testers.index');
     Route::get('/create', [TesterController::class, 'create'])->name('testers.create');
     Route::post('/', [TesterController::class, 'store'])->name('testers.store');

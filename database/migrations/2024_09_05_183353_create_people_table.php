@@ -18,7 +18,7 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('username');
-            $table->string('profile_picture')->default('avatar.png');
+            $table->string('profile_picture');
             $table->date('birth_day');
             $table->string('phone')->nullable();
             $table->enum('sex', ['male', 'female']);

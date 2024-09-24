@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Subject extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['name', 'description'];
+
     public function region()
     {
         return $this->belongsTo(Region::class);
@@ -23,8 +26,8 @@ class Subject extends Model
     {
         return $this->hasMany(Exam::class);
     }
-    public function studentClasses()
+    public function groups()
     {
-        return $this->hasMany(StudentClass::class, 'studentClass_subject');
+        return $this->hasMany(Group::class, 'group_subject');
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\InstituteController;
+use App\Http\Controllers\Admin\StudentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TesterController;
 use Illuminate\Support\Facades\Route;
@@ -50,5 +51,16 @@ Route::prefix('institutes')->group(function () {
     Route::get('/{institute}/edit', [InstituteController::class, 'edit'])->name('institutes.edit');
     Route::put('/{institute}', [InstituteController::class, 'update'])->name('institutes.update');
     Route::delete('/{institute}', [InstituteController::class, 'destroy'])->name('institutes.destroy');
+});
+
+
+Route::prefix('students')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [StudentController::class, 'index'])->name('students.index');
+    Route::get('/create', [StudentController::class, 'create'])->name('students.create');
+    Route::post('/', [StudentController::class, 'store'])->name('students.store');
+    Route::get('/{student}', [StudentController::class, 'show'])->name('students.show');
+    Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
+    Route::put('/{student}', [StudentController::class, 'update'])->name('students.update');
+    Route::delete('/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 });
 require __DIR__ . '/auth.php';

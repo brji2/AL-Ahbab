@@ -1,19 +1,22 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<x-crud-layout title="عرض معلومات المعهد" backUrl="institutes.index">
+
 
     <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-            <h1 class="text-2xl font-bold mb-4">Institute Details</h1>
+            <h1 class="text-2xl font-bold mb-4">معلومات المعهد</h1>
 
             <div class="bg-white p-6 rounded shadow-md">
-                <p><strong>Name:</strong> {{ $institute->name }}</p>
-                <p><strong>Location:</strong> {{ $institute->location->name }}</p>
-                <p><strong>Manager:</strong> {{ $institute->manager->name }}</p>
-                <p><strong>Region:</strong> {{ $institute->region->name }}</p>
+                <p><strong>اسم المعهد:</strong> {{ $institute->name }}</p>
+                <p><strong>اسم المدير:</strong> {{ $institute->manager->person->name }}</p>
+                <p><strong>عدد الحلقات:</strong> {{ count($institute->groups) }}</p>
+                <p><strong>المراكز: </strong>
+                    @foreach ($institute->centers as $center)
+                        <span> {{ $center->name }}</span>
+                    @endforeach
+                </p>
+                <p><strong>القرية:</strong>
+                    {{ $institute->region->name }}
+                </p>
             </div>
 
             <div class="mt-4">
@@ -26,4 +29,5 @@
                 </form>
             </div>
         </div>
-</x-app-layout>
+    </div>
+</x-crud-layout>

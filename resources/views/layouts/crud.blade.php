@@ -8,9 +8,11 @@
             {{ $title ?? null }}
         </h2>
     </x-slot> --}}
-    <x-crud-header text="رجوع" title="{{ $title }}" backUrl="{{ $backUrl }}">
+    <x-slot name="header">
+        <x-crud-header text="رجوع" title="{{ $title }}" backUrl="{{ $backUrl }}">
+        </x-crud-header>
+    </x-slot>
 
-    </x-crud-header>
     <div class=" flex justify-center  p-4 mb-4 rounded bg-gray-50 dark:bg-gray-800 shadow">
         {{ $slot }}
     </div>

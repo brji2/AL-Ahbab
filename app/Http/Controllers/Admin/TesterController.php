@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\EditTesterRequest;
+use App\Http\Requests\StoreTesterRequest;
 use App\Http\Requests\TesterRequest;
 use App\Models\Institute;
 use App\Models\Person;
@@ -39,7 +39,7 @@ class TesterController extends Controller
      */
 
 
-    public function store(TesterRequest $request)
+    public function store(StoreTesterRequest $request)
     {
 
         $user = User::create([
@@ -105,7 +105,7 @@ class TesterController extends Controller
      * Update the specified resource in storage.
      */
 
-    public function update(EditTesterRequest $request, Tester $tester)
+    public function update(UpdateTesterRequest $request, Tester $tester)
     {
         // dd($request);
 

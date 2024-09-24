@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Class;
+use App\Models\Institute;
 use App\Models\Teacher;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,14 +16,12 @@ class GroupFactory extends Factory
      *
      * @return array<string, mixed>
      */
-
-    protected $model = Class::class;
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->word,
             'teacher_id' => Teacher::factory(),
-            // 'institute_id' => Institute::factory(),
+            'institute_id' => Institute::factory(),
         ];
     }
 }

@@ -1,60 +1,86 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+<x-crud-layout title="تعديل بيانات المعهد" backUrl="institutes.index">
 
-    <div class="py-12 max-w-7xl mx-auto sm:px-6 lg:px-8">
-        <div class="p-6 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-            <h1 class="text-2xl font-bold mb-4">Edit Institute</h1>
+    <form action="{{ route('institutes.update', $institute->id) }}" method="POST"
+        class=" grid grid-cols-4 gap-3 max-w-xl space-y-6" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
 
-            <form action="{{ route('institutes.update', $institute->id) }}" method="POST"
-                class="bg-white p-6 rounded shadow-md">
-                @csrf
-                @method('PUT')
-
-                <div class="mb-4">
-                    <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                    <input type="text" name="name" id="name" value="{{ $institute->name }}"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                </div>
-
-                <div class="mb-4">
-                    <label for="location_id" class="block text-sm font-medium text-gray-700">Location</label>
-                    <select name="location_id" id="location_id"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                        @foreach ($locations as $location)
-                            <option value="{{ $location->id }}" @if ($location->id == $institute->location_id) selected @endif>
-                                {{ $location->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="mb-4">
-                    <label for="manager_id" class="block text-sm font-medium text-gray-700">Manager</label>
-                    <select name="manager_id" id="manager_id"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                        @foreach ($managers as $manager)
-                            <option value="{{ $manager->id }}" @if ($manager->id == $institute->manager_id) selected @endif>
-                                {{ $manager->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div class="mb-4">
-                    <label for="region_id" class="block text-sm font-medium text-gray-700">Region</label>
-                    <select name="region_id" id="region_id"
-                        class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm">
-                        @foreach ($regions as $region)
-                            <option value="{{ $region->id }}" @if ($region->id == $institute->region_id) selected @endif>
-                                {{ $region->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Update Institute</button>
-            </form>
+        <!-- Name -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="name" :value="'الاسم'" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="$institute->name"
+                required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
-    </div>
-</x-app-layout>
+        <!-- Name -->
+
+
+        <!-- Region -->
+        <div class=" col-span-4 md:col-span-2">
+            <label for="countries" class="block font-medium text-sm text-gray-700 dark:text-gray-300">اختر
+                البلدة</label>
+            <select id="countries" name="region_id"
+                class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full">
+                <option value="null">اختر البلدة</option>
+                @foreach ($regions as $region)
+                    <option @selected($institute->region_id == $region->id) value="{{ $region->id }}">{{ $region->name }}</option>
+                @endforeach
+            </select>
+            @error('Region_id')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
+        </div>
+        <!--/ Region -->
+
+        <!-- manager -->
+        <div class=" col-span-4 md:col-span-2">
+            <label for="countries" class="block font-medium text-sm text-gray-700 dark:text-gray-300">تحديد
+                المدير</label>
+            <select id="countries" name="manager_id"
+                class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full">
+                <option value="null">اختر مدير المعهد</option>
+                @foreach ($managers as $manager)
+                    <option @selected($institute->manager_id == $manager->id) value="{{ $manager->id }}">{{ $manager->person->name }}
+                    </option>
+                @endforeach
+            </select>
+            @error('manager_id')
+                <p class="text-red-500 text-xs italic">{{ $message }}</p>
+            @enderror
+        </div>
+        <!--/ manager -->
+
+        {{-- new --}}
+        <!-- tester -->
+        <div class=" col-span-4 md:col-span-2">
+            <label for="testers" class="block font-medium text-sm text-gray-700 dark:text-gray-300">تحديد
+                المختبر <select id="testers" name="tester_id"
+                    class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full">
+                    <option value="null">اختر المختبر</option>
+                    @foreach ($testers as $tester)
+                        <option @selected($institute->tester_id == $tester->id) value="{{ $tester->id }}">{{ $tester->person->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('tester_id')
+                    <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                @enderror
+        </div>
+        <!--/ tester -->
+
+
+        <x-primary-button class=" col-span-2 md:col-span-1">حفظ التعديلات</x-primary-button>
+    </form>
+
+
+    @push('scripts')
+        <script>
+            $(function() {
+                $("#datepicker-sc").datepicker({
+                    dateFormat: 'yy-mm-dd'
+                });
+            })
+        </script>
+    @endpush
+
+</x-crud-layout>

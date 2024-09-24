@@ -9,12 +9,14 @@ class Manager extends Model
 {
     use HasFactory;
 
-    public function region()
+    protected $fillable = ['person_id'];
+
+    public function person()
     {
-        return $this->belongsTo(Region::class);
+        return $this->belongsTo(Person::class);
     }
     public function institute()
     {
-        return $this->hasOne(Institute::class);
+        return $this->belongsToMany(Institute::class);
     }
 }

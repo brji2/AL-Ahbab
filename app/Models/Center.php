@@ -14,4 +14,8 @@ class Center extends Model
     {
         return $this->belongsToMany(Institute::class);
     }
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
+    }
 }

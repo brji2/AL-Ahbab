@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\Admin\InstituteController;
 use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\GroupController;
+use App\Http\Controllers\Admin\TeacherController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\TesterController;
+use App\Http\Controllers\CenterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,7 +46,7 @@ Route::prefix('testers')->middleware(['auth', 'verified'])->group(function () {
 });
 
 
-Route::prefix('institutes')->group(function () {
+Route::prefix('institutes')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [InstituteController::class, 'index'])->name('institutes.index');
     Route::get('/create', [InstituteController::class, 'create'])->name('institutes.create');
     Route::post('/', [InstituteController::class, 'store'])->name('institutes.store');
@@ -62,5 +65,37 @@ Route::prefix('students')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/{student}/edit', [StudentController::class, 'edit'])->name('students.edit');
     Route::put('/{student}', [StudentController::class, 'update'])->name('students.update');
     Route::delete('/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
+});
+
+Route::prefix('groups')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [GroupController::class, 'index'])->name('groups.index');
+    Route::get('/create', [GroupController::class, 'create'])->name('groups.create');
+    Route::post('/', [GroupController::class, 'store'])->name('groups.store');
+    Route::get('/{group}', [GroupController::class, 'show'])->name('groups.show');
+    Route::get('/{group}/edit', [GroupController::class, 'edit'])->name('groups.edit');
+    Route::put('/{group}', [GroupController::class, 'update'])->name('groups.update');
+    Route::delete('/{group}', [GroupController::class, 'destroy'])->name('groups.destroy');
+});
+
+
+
+Route::prefix('centers')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [CenterController::class, 'index'])->name('centers.index');
+    Route::get('/create', [CenterController::class, 'create'])->name('centers.create');
+    Route::post('/', [CenterController::class, 'store'])->name('centers.store');
+    Route::get('/{center}', [CenterController::class, 'show'])->name('centers.show');
+    Route::get('/{center}/edit', [CenterController::class, 'edit'])->name('centers.edit');
+    Route::put('/{center}', [CenterController::class, 'update'])->name('centers.update');
+    Route::delete('/{center}', [CenterController::class, 'destroy'])->name('centers.destroy');
+});
+
+Route::prefix('teachers')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('/', [TeacherController::class, 'index'])->name('teachers.index');
+    Route::get('/create', [TeacherController::class, 'create'])->name('teachers.create');
+    Route::post('/', [TeacherController::class, 'store'])->name('teachers.store');
+    Route::get('/{teacher}', [TeacherController::class, 'show'])->name('teachers.show');
+    Route::get('/{teacher}/edit', [TeacherController::class, 'edit'])->name('teachers.edit');
+    Route::put('/{teacher}', [TeacherController::class, 'update'])->name('teachers.update');
+    Route::delete('/{teacher}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
 });
 require __DIR__ . '/auth.php';

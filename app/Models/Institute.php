@@ -32,7 +32,7 @@ class Institute extends Model
 
     public function centers()
     {
-        return $this->belongsToMany(Center::class);
+        return $this->belongsToMany(Center::class, 'center_institute');
     }
 
     public function region()

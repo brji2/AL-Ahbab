@@ -10,9 +10,13 @@ class Teacher extends Model
     use HasFactory;
     protected $fillable = ['name', 'person_id', 'institute_id'];
 
-    public function studenClass()
+    public function person()
     {
-        return $this->hasOne(G::class);
+        return $this->belongsTo(Person::class);
+    }
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
     }
 
     public function institute()

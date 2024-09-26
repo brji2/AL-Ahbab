@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Region;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,6 +21,8 @@ class CenterFactory extends Factory
             'name' => $this->faker->company,
             'address' => $this->faker->address,
             'type' => $this->faker->randomElement(['owned', 'rented', 'borrowed']),
+            'region_id' => Region::inRandomOrder()->first()->id
+
         ];
     }
 }

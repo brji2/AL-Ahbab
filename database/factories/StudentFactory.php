@@ -26,8 +26,7 @@ class StudentFactory extends Factory
             // 'group_id' => Group::factory(),
             // 'subject_id' => Subject::factory(),
 
-            'name' => fake()->name,
-            'person_id' => Person::inRandomOrder()->first()->id,
+            'person_id' => Person::factory(),
             'group_id' => Group::inRandomOrder()->first()->id,
             'subject_id' => Subject::inRandomOrder()->first()->id,
         ];

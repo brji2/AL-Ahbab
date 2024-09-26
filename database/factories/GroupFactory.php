@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Center;
 use App\Models\Institute;
 use App\Models\Teacher;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,8 +21,9 @@ class GroupFactory extends Factory
     {
         return [
             'name' => fake()->word,
-            'teacher_id' => Teacher::factory(),
-            'institute_id' => Institute::factory(),
+            'teacher_id' => Teacher::inRandomOrder()->first()->id,
+            'institute_id' => Institute::inRandomOrder()->first()->id,
+            'center_id' => Center::inRandomOrder()->first()->id,
         ];
     }
 }

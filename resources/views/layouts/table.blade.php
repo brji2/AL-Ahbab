@@ -10,7 +10,7 @@ $createBtnText= النص الذي سيظهر في زر الإضافة
         <h1 class="text-2xl font-bold mb-4">{{ $headerText }}</h1>
         <a href="{{ route($Routsprefix . '.create') }}"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mb-4 inline-block">{{ $createBtnText }}</a>
-        <table class="min-w-full text-left bg-white shadow-md rounded-lg">
+        <table class="min-w-full bg-white shadow-md rounded-lg">
             <thead class="bg-gray-100">
                 <tr>
                     {{ $headRows ?? null }}

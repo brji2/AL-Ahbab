@@ -12,7 +12,7 @@ class Group extends Model
 
     public function teacher()
     {
-        return $this->hasOne(Teacher::class);
+        return $this->belongsTo(Teacher::class);
     }
 
 
@@ -24,6 +24,10 @@ class Group extends Model
     public function institute()
     {
         return $this->belongsTo(Institute::class);
+    }
+    public function center()
+    {
+        return $this->belongsTo(Center::class);
     }
     public function subjects()
     {

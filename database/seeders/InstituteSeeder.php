@@ -20,7 +20,7 @@ class InstituteSeeder extends Seeder
         $managers = Manager::all();
         $testers = Tester::all();
         $regions = Region::all();
-        $centers = Center::all();
+        // $centers = Center::all();
 
         // Create 10 institutes
         $institutes = Institute::factory()->count(10)->create([
@@ -29,11 +29,11 @@ class InstituteSeeder extends Seeder
             'region_id' => $regions->random()->id,
         ]);
 
-        foreach ($institutes as $institute) {
-            // Randomly attach 1 to 3 centers to each institute
-            $institute->centers()->attach(
-                $centers->random(rand(1, 3))->pluck('id')->toArray()
-            );
-        }
+        // foreach ($institutes as $institute) {
+        //     // Randomly attach 1 to 3 centers to each institute
+        //     $institute->centers()->attach(
+        //         $centers->random(rand(1, 3))->pluck('id')->toArray()
+        //     );
+        // }
     }
 }

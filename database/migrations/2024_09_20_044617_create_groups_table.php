@@ -20,6 +20,9 @@ return new class extends Migration
 
             $table->unsignedBigInteger('institute_id');
             $table->foreign('institute_id')->references('id')->on('institutes');
+
+            $table->unsignedBigInteger('center_id');
+            $table->foreign('center_id')->references('id')->on('centers');
             $table->timestamps();
         });
     }

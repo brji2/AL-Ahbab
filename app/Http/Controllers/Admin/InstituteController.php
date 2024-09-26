@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreInstituteRequest;
 use App\Http\Requests\UpdateInstituteRequest;
-use App\Http\Requests\UpdateInstitutRequest;
 use App\Models\Center;
 use App\Models\Institute;
 use App\Models\Location;
@@ -44,7 +43,7 @@ class InstituteController extends Controller
      */
     public function store(StoreInstituteRequest $request)
     {
-     
+
         Institute::create($request->all());
 
         return redirect()->route('institutes.index')->with('success', 'تم إضافة المعهد بنجاح');

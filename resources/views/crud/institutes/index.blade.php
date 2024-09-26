@@ -19,7 +19,8 @@
                 <td class="py-2 px-4 border-b">{{ count($institute->groups) }}</td>
                 <td class="py-2 px-4 border-b">
                     @foreach ($institute->centers as $center)
-                        <span> {{ $center->name }}</span>
+                        {{-- <a href="{{ route('centers.show', $center->id) }}"> {{ $center->name }}</a> --}}
+                        <a href=""> {{ $center->name }}</a>
                     @endforeach
                 </td>
                 <td class="py-2 px-4 border-b ">{{ $institute->region->name }}</td>

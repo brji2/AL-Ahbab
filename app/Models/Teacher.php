@@ -8,9 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Teacher extends Model
 {
     use HasFactory;
-    public function studenClass()
+    protected $fillable = ['name', 'person_id', 'institute_id'];
+
+    public function person()
     {
-        return $this->hasOne(StudentClass::class);
+        return $this->belongsTo(Person::class);
+    }
+    public function groups()
+    {
+        return $this->hasMany(Group::class);
     }
 
     public function institute()

@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class EditTesterRequest extends FormRequest
+class StoreTesterRequest extends PersonRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,8 @@ class EditTesterRequest extends FormRequest
     {
         // dd($this);
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', Rule::unique('people', 'username')->ignore($this->person_id)],
-            'birth_day' => ['required', 'date'],
-            'phone' => ['required', 'string', 'max:255'],
-            'sex' => ['required'],
-            'address'   => ['required', 'string', 'max:255'],
-            'IsMarried' => ['required'],
-
+            'email' => ['unique:users,email', 'required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'min:5'],
             'institute_id' => ['exists:institutes,id'],
         ];
     }

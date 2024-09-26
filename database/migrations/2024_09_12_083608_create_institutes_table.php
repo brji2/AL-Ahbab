@@ -15,11 +15,14 @@ return new class extends Migration
             $table->id();
             $table->text('name');
 
-            $table->unsignedBigInteger('location_id');
-            $table->foreign('location_id')->references('id')->on('locations');
+            // $table->unsignedBigInteger('location_id');
+            // $table->foreign('location_id')->references('id')->on('locations');
 
             $table->unsignedBigInteger('manager_id');
             $table->foreign('manager_id')->references('id')->on('managers');
+
+            $table->unsignedBigInteger('tester_id');
+            $table->foreign('tester_id')->references('id')->on('testers');
 
             $table->unsignedBigInteger('region_id');
             $table->foreign('region_id')->references('id')->on('regions');

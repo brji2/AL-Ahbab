@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Exam extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['tester_id', 'student_id', 'score', 'result', 'date', 'subject_id', 'juz', 'certificate'];
+
     public function tester()
     {
         return $this->belongsTo(Tester::class);

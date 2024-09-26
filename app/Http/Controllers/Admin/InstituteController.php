@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreInstituteRequest;
+use App\Http\Requests\UpdateInstituteRequest;
+use App\Models\Center;
 use App\Models\Institute;
 use App\Models\Location;
 use App\Models\Manager;
 use App\Models\Region;
+use App\Models\Tester;
 use Illuminate\Http\Request;
 
 class InstituteController extends Controller
@@ -16,9 +20,9 @@ class InstituteController extends Controller
      */
     public function index()
     {
-        $institutes = Institute::with(['location', 'manager', 'region'])->get();
+        $institutes = Institute::with('manager', 'centers')->get();
 
-        return view('institutes.index', compact('institutes'));
+        return view('crud.institutes.index', compact('institutes'));
     }
 
     /**
@@ -26,28 +30,23 @@ class InstituteController extends Controller
      */
     public function create()
     {
-        $locations = Location::all();
+        $testers = Tester::all();
         $managers = Manager::all();
         $regions = Region::all();
-
-        return view('institutes.create', compact('locations', 'managers', 'regions'));
+        $centers = Center::all();
+        // dd($managers);
+        return view('crud.institutes.create', compact('testers', 'managers', 'regions', 'centers'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreInstituteRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'location_id' => 'required|exists:locations,id',
-            'manager_id' => 'required|exists:managers,id',
-            'region_id' => 'required|exists:regions,id',
-        ]);
 
         Institute::create($request->all());
 
-        return redirect()->route('institutes.index')->with('success', 'Institute created successfully.');
+        return redirect()->route('institutes.index')->with('success', 'تم إضافة المعهد بنجاح');
     }
 
     /**
@@ -55,7 +54,7 @@ class InstituteController extends Controller
      */
     public function show(Institute $institute)
     {
-        return view('institutes.show', compact('institute'));
+        return view('crud.institutes.show', compact('institute'));
     }
 
     /**
@@ -63,28 +62,23 @@ class InstituteController extends Controller
      */
     public function edit(Institute $institute)
     {
-        $locations = Location::all();
+        $testers = Tester::all();
         $managers = Manager::all();
         $regions = Region::all();
+        $centers = Center::all();
 
-        return view('institutes.edit', compact('institute', 'locations', 'managers', 'regions'));
+        return view('crud.institutes.edit', compact('institute', 'centers', 'testers', 'managers', 'regions'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Institute $institute)
+    public function update(UpdateInstituteRequest $request, Institute $institute)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'location_id' => 'required|exists:locations,id',
-            'manager_id' => 'required|exists:managers,id',
-            'region_id' => 'required|exists:regions,id',
-        ]);
 
         $institute->update($request->all());
 
-        return redirect()->route('institutes.index')->with('success', 'Institute updated successfully.');
+        return redirect()->route('institutes.index')->with('success', 'تم تحديث بيانات المعهد بنجاح');
     }
 
     /**

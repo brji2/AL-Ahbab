@@ -85,12 +85,12 @@
         </div>
         <!--/ Address -->
 
-
+        <!-- Institute -->
         <div class=" col-span-4 md:col-span-2">
-            <label for="countries" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">اختر
+            <label for="institutes" class="block font-medium text-sm text-gray-700 dark:text-gray-300">اختر
                 المعهد</label>
-            <select id="countries" name="institute_id"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select id="institutes" name="institute_id"
+                class="border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm mt-1 block w-full">
                 <option selected>اختر المعهد</option>
                 @foreach ($institutes as $institute)
                     <option value="{{ $institute->id }}">{{ $institute->name }}</option>
@@ -100,7 +100,7 @@
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>
-
+        <!--/ Institute -->
 
 
 
@@ -110,14 +110,14 @@
         <div class=" col-span-4 md:col-span-2">
             <x-input-label for="profile_picture" :value="__('صورة الحساب')" />
             <x-text-input id="profile_picture" name="profile_picture" type="file" class="mt-1 block w-full"
-                :value="old('profile_picture')" required autocomplete="profile_picture" />
+                :value="old('profile_picture')" autocomplete="profile_picture" />
             <x-input-error class="mt-2" :messages="$errors->get('profile_picture')" />
         </div>
         <!--/ profile_picture -->
 
 
 
-        <!-- Gender -->
+        <!-- SEX -->
         <div class="md:flex md:items-center justify-center mb-6 col-span-2">
             <label class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4">
                 الجنس
@@ -138,6 +138,7 @@
                 @enderror
             </div>
         </div>
+        <!--/ SEX -->
 
 
 
@@ -165,6 +166,7 @@
             </div>
 
         </div>
+        <!--/ Is Married -->
 
         <x-primary-button class=" col-span-2 md:col-span-1">أضف مختبر جديد</x-primary-button>
     </form>

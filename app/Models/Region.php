@@ -8,9 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Region extends Model
 {
     use HasFactory;
+    protected $fillable = ['name'];
 
-    public function manager()
+    public function centers()
     {
-        return $this->hasOne(Manager::class);
+        return $this->belongsToMany(Center::class);
+    }
+
+    public function institutes()
+    {
+        return $this->hasMany(Institute::class);
     }
 }

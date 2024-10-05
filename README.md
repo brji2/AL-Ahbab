@@ -13,3 +13,8 @@
 - **drawsql.app**: لإنشاء مخطط قاعدة البيانات بناءً على متطلبات المشروع.
 - **Tailwind CSS**: لتنسيق وتصميم الواجهة.
 - **Flowbite**: لجلب الـComponents الجاهزة من [Flowbite](https://flowbite.com).
+
+
+لتسجيل الدخول بإيميل تجريبي:
+البريد الإلكتروني: admin@admin.com
+كلمة المرور: password

@@ -9,7 +9,7 @@ class Tester extends Model
 {
     use HasFactory;
 
-    protected $fillable = [];
+    protected $fillable = ['person_id', 'institute_id'];
     public function person()
     {
         return $this->belongsTo(Person::class);

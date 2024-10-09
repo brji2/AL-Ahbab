@@ -18,13 +18,13 @@ return new class extends Migration
 
             $table->string('name');
             $table->string('username');
-            $table->string('profile_picture');
+            $table->string('profile_picture')->nullable();
             $table->date('birth_day');
             $table->string('phone')->nullable();
             $table->enum('sex', ['male', 'female']);
             $table->string('address');
             $table->boolean('IsMarried');
-            $table->boolean('Status')->default(true);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

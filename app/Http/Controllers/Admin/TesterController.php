@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreTesterRequest;
 use App\Http\Requests\TesterRequest;
+use App\Http\Requests\UpdateTesterRequest;
 use App\Models\Institute;
 use App\Models\Person;
 use App\Models\Tester;
@@ -45,7 +46,7 @@ class TesterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->username),
+            'password' => Hash::make($request->password) ?? Hash::make($request->username),
             // 'password' => Hash::make($request->password),
         ]);
         event(new Registered($user));
@@ -57,8 +58,8 @@ class TesterController extends Controller
             'phone' => $request->phone,
             'sex' => $request->sex,
             'address' => $request->address,
-            'IsMarried' => $request->IsMarried,
-            'Status' => $request->Status ?? true,
+            'IsMarried' => $request->is_married,
+            'status' => $request->status ?? true,
         ]);
 
         if ($request->hasFile('profile_picture')) {
@@ -108,6 +109,9 @@ class TesterController extends Controller
     {
         // dd($request);
 
+        $tester->person->user()->update([
+            'password' => Hash::make($request->username),
+        ]);
         $tester->person()->update([
             'name' => $request->name,
             'username' => $request->username,
@@ -115,8 +119,8 @@ class TesterController extends Controller
             'phone' => $request->phone,
             'sex' => $request->sex,
             'address' => $request->address,
-            'IsMarried' => $request->IsMarried,
-            'Status' => $request->Status ?? true,
+            'IsMarried' => $request->is_married,
+            'status' => $request->status ?? $tester->person->status,
         ]);
 
         if ($request->hasFile('profile_picture')) {
@@ -130,11 +134,9 @@ class TesterController extends Controller
         $tester->person()->update([
             'profile_picture' => $profile
         ]);
-        $tester->update([
-            // 'person_id' => $request->institute_id,
-            // 'institute_id' => $request->institute_id,
+        // $tester->update([
 
-        ]);
+        // ]);
 
         return redirect()->route('testers.index');
     }

@@ -9,6 +9,7 @@ use App\Models\Group;
 use App\Models\Student;
 use App\Models\Subject;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -38,13 +39,15 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest  $request)
     {
-        $student = Student::create($request->validated());
-
+        // $student = Student::create($request->validated());
+        dd($request);
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->password) ?? Hash::make($request->username),
+            // 'password' => Hash::make($request->password),
         ]);
+        event(new Registered($user));
 
 
         $user->person()->create([
@@ -54,26 +57,25 @@ class StudentController extends Controller
             'phone' => $request->phone,
             'sex' => $request->sex,
             'address' => $request->address,
-            'IsMarried' => $request->IsMarried,
-            'Status' => $request->Status ?? true,
+            'IsMarried' => $request->is_married,
+            'status' => $request->status ?? true,
         ]);
 
         if ($request->hasFile('profile_picture')) {
-            $profile = 'avatar' . '-' .  $user->person->id . time() . '-' .  $request->profile_picture->extension();
+            $profile = 'avatar' . '-' .  $user->person->id . time() . '.ٍ' .  $request->profile_picture->extension();
             $request->profile_picture->move(public_path('images/profile'), $profile);
         } else {
             $profile = 'avatar.png';
         }
-        $user->person->update([
+        $user->person()->update([
             'profile_picture' => $profile
         ]);
 
 
-        $user->person->Student()->create([
+        $user->person->student()->create([
             'group_id' => $request->group_id,
             'subject_id' => $request->subject_id,
         ]);
-        // $user->assignRole('Student');
 
         return redirect()->route('students.index')->with('success', 'تم إضافة الطالب بنجاح');
     }
@@ -102,6 +104,34 @@ class StudentController extends Controller
     public function update(UpdateStudentRequest  $request, Student $student)
     {
         $student->update($request->validated());
+        $student->person->user()->update([
+            'password' => Hash::make($request->username),
+        ]);
+        $student->person()->update([
+            'name' => $request->name,
+            'username' => $request->username,
+            'birth_day' => $request->birth_day,
+            'phone' => $request->phone,
+            'sex' => $request->sex,
+            'address' => $request->address,
+            'IsMarried' => $request->is_married,
+            'status' => $request->status ?? $student->person->status,
+        ]);
+
+        if ($request->hasFile('profile_picture')) {
+            $profile = 'avatar' . '-' .  $student->person->id . '-' . time() . '.' .  $request->profile_picture->extension();
+            $request->profile_picture->move(public_path('images/profile'), $profile);
+        } else {
+            $profile = $student->person->profile_picture;
+        }
+
+
+        $student->person()->update([
+            'profile_picture' => $profile
+        ]);
+        $student->update($request->validated());
+
+        // return redirect()->route('students.index');
         return redirect()->route('students.index')->with('success', 'تم تحديث الطالب بنجاح');
     }
 

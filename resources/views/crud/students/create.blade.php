@@ -43,20 +43,20 @@
         <!-- Password -->
         <div class="col-span-4 md:col-span-2">
             <x-input-label for="password" :value="'كلمة المرور'" />
-            <x-text-input id="password" name="password" type="password" class="mt-1 block w-full" required
+            <x-text-input id="password" name="password" type="text" class="mt-1 block w-full"
                 autocomplete="new-password" />
             <x-input-error class="mt-2" :messages="$errors->get('password')" />
         </div>
         <!-- /Password -->
 
-        <!-- Password Confirmation -->
+        {{-- <!-- Password Confirmation -->
         <div class="col-span-4 md:col-span-2">
             <x-input-label for="password_confirmation" :value="'تأكيد كلمة المرور'" />
-            <x-text-input id="password_confirmation" name="password_confirmation" type="password"
-                class="mt-1 block w-full" required autocomplete="new-password" />
+            <x-text-input id="password_confirmation" name="password_confirmation" type="text"
+                class="mt-1 block w-full" autocomplete="new-password" />
             <x-input-error class="mt-2" :messages="$errors->get('password_confirmation')" />
         </div>
-        <!-- /Password Confirmation -->
+        <!-- /Password Confirmation --> --}}
 
         <!-- Birth Date -->
         <div class="col-span-4 md:col-span-2">
@@ -139,11 +139,11 @@
             <div class="">
                 <div class="flex flex-row items-center">
                     <label class="block text-gray-500 font-bold">
-                        <input name="IsMarried" class="mr-2 leading-tight" type="radio" value="1">
+                        <input name="is_married" class="mr-2 leading-tight" type="radio" value="1">
                         <span class="text-sm">متزوج</span>
                     </label>
                     <label class="ml-4 block text-gray-500 font-bold">
-                        <input name="IsMarried" class="mr-2 leading-tight" type="radio" value="0" checked>
+                        <input name="is_married" class="mr-2 leading-tight" type="radio" value="0" checked>
                         <span class="text-sm">أعزب</span>
                     </label>
                 </div>

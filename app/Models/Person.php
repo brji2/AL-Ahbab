@@ -19,7 +19,7 @@ class Person extends Model
         'sex',
         'address',
         'IsMarried',
-        'Status',
+        'status',
         'profile_picture'
     ];
 
@@ -49,8 +49,8 @@ class Person extends Model
     public function getAvatar()
     {
         if ($this->profile_picture) {
-            return "images/profile/$this->profile_picture";
+            return "/images/profile/$this->profile_picture";
         }
-        return "images/profile/avatar.png";
+        return "/images/profile/avatar.png";
     }
 }

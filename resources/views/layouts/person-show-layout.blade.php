@@ -35,7 +35,7 @@
         </div>
         <div class="flex flex-col items-start pr-5 pb-10">
             <img class="w-24 h-24 mb-10 rounded-full shadow-lg object-top object-cover"
-                src="{{ asset(Auth::user()->person->getAvatar()) }}" alt="Bonnie image" />
+                src="{{ $thisPerson->person->getAvatar() }}" alt="Bonnie image" />
             <h2 class="mb-1 text-2xl font-bold text-gray-900 dark:text-white">
                 {{ $thisPerson->person->name }}</h2>
 

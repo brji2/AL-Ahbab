@@ -45,16 +45,16 @@
         <!--/ Phone -->
 
 
-        {{-- <!-- Password -->
+        <!-- Password -->
         <div class=" col-span-4 md:col-span-2">
             <x-input-label for="update_password_password" :value="'كلمة المرور'" />
-            <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full"
+            <x-text-input id="update_password_password" name="password" type="text" class="mt-1 block w-full"
                 autocomplete="new-password" />
             <x-input-error :messages="$errors->updatePassword->get('password')" class="mt-2" />
         </div>
         <!--/ Password -->
 
-        <!-- Password Confirmation -->
+        {{-- <!-- Password Confirmation -->
         <div class=" col-span-4 md:col-span-2">
             <x-input-label for="update_password_password_confirmation" :value="'تأكيد كلمة المرور'" />
             <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password"
@@ -62,8 +62,8 @@
             <x-input-error :messages="$errors->updatePassword->get('password_confirmation')" class="mt-2" />
         </div>
         <!--/ Password Confirmation -->
-
  --}}
+
 
 
         <!-- Birth Date -->
@@ -151,11 +151,11 @@
             <div class="">
                 <div class="  flex flex-row items-center">
                     <label class="block text-gray-500 font-bold">
-                        <input name="IsMarried" class="mr-2 leading-tight" type="radio" value="1">
+                        <input name="is_married" class="mr-2 leading-tight" type="radio" value="1">
                         <span class="text-sm">متزوج</span>
                     </label>
                     <label class="ml-4 block text-gray-500 font-bold">
-                        <input name="IsMarried" class="mr-2 leading-tight" type="radio" value="0">
+                        <input name="is_married" class="mr-2 leading-tight" type="radio" value="0">
                         <span class="text-sm">أعزب</span>
                     </label>
                 </div>

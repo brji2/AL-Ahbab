@@ -27,7 +27,7 @@
                          <button
                              class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                              {{-- <div>{{ Auth::user()->name }}</div> --}}
-                             <img src="{{ asset(Auth::user()->person->getAvatar()) }}" alt=""
+                             <img src="{{ asset(Auth::user()->getAvatar()) }}" alt=""
                                  class="w-10 h-10   rounded-full object-top object-cover">
 
                              <div class="ms-1">

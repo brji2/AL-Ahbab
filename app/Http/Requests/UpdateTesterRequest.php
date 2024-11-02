@@ -24,15 +24,14 @@ class UpdateTesterRequest extends FormRequest
     {
         // dd($this);
         return [
-            'name' => ['required', 'string', 'max:255'],
-            'username' => ['required', 'string', 'max:255', Rule::unique('people', 'username')->ignore($this->person_id)],
-            'birth_day' => ['required', 'date'],
-            'phone' => ['required', 'string', 'max:255'],
-            'sex' => ['required'],
-            'address'   => ['required', 'string', 'max:255'],
-            'IsMarried' => ['required'],
-
-            'institute_id' => 'nullable',
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'username' => ['sometimes', 'required', 'string', 'max:255', Rule::unique('people', 'username')->ignore($this->person_id)],
+            'birth_day' => ['sometimes', 'required', 'date'],
+            'phone' => ['sometimes', 'required', 'string', 'max:255'],
+            'sex' => ['sometimes', 'required'],
+            'address'   => ['sometimes', 'required', 'string', 'max:255'],
+            'IsMarried' => ['sometimes', 'required'],
+            'institute_id' => 'sometimes',
             // 'institute_id' => ['exists:institutes,id'],
         ];
     }

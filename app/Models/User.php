@@ -49,7 +49,7 @@ class User extends Authenticatable
     public function getAvatar()
     {
         try {
-            return $this->person()->getAvatar();
+            return $this->person->getAvatar();
         } catch (\Throwable $th) {
             return "images/profile/avatar.png";
         }

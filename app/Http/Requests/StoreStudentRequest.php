@@ -24,6 +24,9 @@ class StoreStudentRequest extends FormRequest
         // dd($this);s
         return [
             'name' => 'required|string|max:255',
+            'email' => ['unique:users,email', 'required', 'string', 'email', 'max:255'],
+            // 'email' => ['required', 'string', 'email', 'max:255'],
+            // 'password' => ['confirmed', 'string', 'min:5'],
             'group_id' => 'exists:groups,id',
             'subject_id' => 'exists:subjects,id',
         ];

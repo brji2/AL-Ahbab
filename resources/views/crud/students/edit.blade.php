@@ -17,6 +17,18 @@
         </div>
         <!-- /Name -->
 
+
+        <!-- Username -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="username" :value="__('اسم المستخدم')" />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="$student->person->username"
+                required autocomplete="username" />
+            <x-input-error class="mt-2" :messages="$errors->get('username')" />
+        </div>
+        <!--/ Username -->
+
+
+
         <!-- Group -->
         <div class="col-span-4 md:col-span-2">
             <label for="group_id" class="block font-medium text-sm text-gray-700 dark:text-gray-300">اختر
@@ -53,6 +65,30 @@
         </div>
         <!-- /Subject -->
 
+
+
+        <!-- Birth Date -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label for="datepicker-sc" :value="__('تاريخ الميلاد')" />
+            <x-text-input id="datepicker-sc" name="birth_day" type="date" class="mt-1 block w-full" :value="$student->person->birth_day"
+                required autocomplete="birth_day" />
+            <x-input-error class="mt-2" :messages="$errors->get('birth_day')" />
+        </div>
+        <!--/ birth_day -->
+
+
+
+
+        <!-- Address -->
+        <div class=" col-span-4 md:col-span-2">
+            <x-input-label fosr="address" :value="__('العنوان')" />
+            <x-text-input id="address" name="address" type="text" class="mt-1 block w-full" :value="$student->person->address"
+                required autocomplete="address" />
+            <x-input-error class="mt-2" :messages="$errors->get('address')" />
+        </div>
+        <!--/ Address -->
+
+
         <!-- Gender -->
         <div class="md:flex md:items-center justify-center mb-6 col-span-2">
             <div class="md:w-1/3">
@@ -88,7 +124,7 @@
             <div class="">
                 <div class="flex flex-row items-center">
                     <label class="block text-gray-500 font-bold">
-                        <input name="isMarried" class="mr-2 leading-tight" type="radio" @checked($student->person->isMarried)
+                        <input name="is_married" class="mr-2 leading-tight" type="radio" @checked($student->person->isMarried)
                             value="1">
                         <span class="text-sm">متزوج</span>
                     </label>

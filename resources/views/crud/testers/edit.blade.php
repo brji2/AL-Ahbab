@@ -57,7 +57,7 @@
         <!--/ Address -->
 
 
-        <!-- Institute -->
+        {{-- <!-- Institute -->
         <div class=" col-span-4 md:col-span-2">
             <label for="institutes" class="block font-medium text-sm text-gray-700 dark:text-gray-300">اختر
                 المعهد</label>
@@ -73,7 +73,7 @@
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>
-        <!--/ Institute -->
+        <!--/ Institute --> --}}
 
 
 
@@ -114,12 +114,12 @@
             <div class="">
                 <div class="  flex flex-row items-center">
                     <label class="block text-gray-500 font-bold">
-                        <input name="IsMarried" class="mr-2 leading-tight" type="radio" @checked($tester->person->IsMarried)
+                        <input name="is_married" class="mr-2 leading-tight" type="radio" @checked($tester->person->IsMarried)
                             value="1">
                         <span class="text-sm">متزوج</span>
                     </label>
                     <label class="ml-4 block text-gray-500 font-bold">
-                        <input name="IsMarried" class="mr-2 leading-tight" type="radio" @checked(!$tester->person->IsMarried)
+                        <input name="is_married" class="mr-2 leading-tight" type="radio" @checked(!$tester->person->IsMarried)
                             value="0">
                         <span class="text-sm">أعزب</span>
                     </label>

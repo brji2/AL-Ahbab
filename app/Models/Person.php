@@ -49,8 +49,8 @@ class Person extends Model
     public function getAvatar()
     {
         if ($this->profile_picture) {
-            return "images/$this->profile_picture";
+            return "images/profile/$this->profile_picture";
         }
-        return "images/avatar.png";
+        return "images/profile/avatar.png";
     }
 }

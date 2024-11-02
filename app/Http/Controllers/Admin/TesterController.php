@@ -9,6 +9,7 @@ use App\Models\Institute;
 use App\Models\Person;
 use App\Models\Tester;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,7 +21,6 @@ class TesterController extends Controller
     public function index()
     {
         $institutes = Institute::all();
-
         $testers = Tester::all();
         return view('crud.testers.index', compact(['institutes', 'testers']));
     }
@@ -45,9 +45,10 @@ class TesterController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->username),
+            // 'password' => Hash::make($request->password),
         ]);
-
+        event(new Registered($user));
 
         $user->person()->create([
             'name' => $request->name,
@@ -61,19 +62,17 @@ class TesterController extends Controller
         ]);
 
         if ($request->hasFile('profile_picture')) {
-            $profile = 'avatar' . '-' .  $user->person->id . time() . '-' .  $request->profile_picture->extension();
+            $profile = 'avatar' . '-' .  $user->person->id . time() . '.' .  $request->profile_picture->extension();
             $request->profile_picture->move(public_path('images/profile'), $profile);
         } else {
             $profile = 'avatar.png';
         }
-        $user->person->update([
+        $user->person()->update([
             'profile_picture' => $profile
         ]);
 
         $user->person->tester()->create([
-            // 'person_id' => $request->institute_id,
-            // 'institute_id' => $request->institute_id,
-
+            'person_id' => $user->person->id,
         ]);
 
         // $user->assignRole('tester');

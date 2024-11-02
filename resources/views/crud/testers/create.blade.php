@@ -45,7 +45,7 @@
         <!--/ Phone -->
 
 
-        <!-- Password -->
+        {{-- <!-- Password -->
         <div class=" col-span-4 md:col-span-2">
             <x-input-label for="update_password_password" :value="'كلمة المرور'" />
             <x-text-input id="update_password_password" name="password" type="password" class="mt-1 block w-full"
@@ -63,7 +63,7 @@
         </div>
         <!--/ Password Confirmation -->
 
-
+ --}}
 
 
         <!-- Birth Date -->
@@ -85,7 +85,7 @@
         </div>
         <!--/ Address -->
 
-        <!-- Institute -->
+        {{-- <!-- Institute -->
         <div class=" col-span-4 md:col-span-2">
             <label for="institutes" class="block font-medium text-sm text-gray-700 dark:text-gray-300">اختر
                 المعهد</label>
@@ -100,7 +100,7 @@
                 <p class="text-red-500 text-xs italic">{{ $message }}</p>
             @enderror
         </div>
-        <!--/ Institute -->
+        <!--/ Institute --> --}}
 
 
 

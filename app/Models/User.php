@@ -51,7 +51,7 @@ class User extends Authenticatable
         try {
             return $this->person()->getAvatar();
         } catch (\Throwable $th) {
-            return "images/avatar.png";
+            return "images/profile/avatar.png";
         }
     }
 }
